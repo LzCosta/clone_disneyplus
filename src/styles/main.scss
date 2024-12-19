@@ -1,5 +1,70 @@
-$bgColor: rgb(30, 202, 199);
+@use "hero";
+@use "variaveis";
+
+@font-face {
+  font-family: Avenir;
+  src: url(../../assets/fonts/Avenir-Regular.woff2);
+  font-weight: 400;
+}
+@font-face {
+  font-family: Avenir;
+  src: url(../../assets/fonts/Avenir-Bold.woff2);
+  font-weight: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background-color: $bgColor;
+  background-color: variaveis.$corDeFundo;
+  font-family: Avenir, sans-serif;
+}
+
+//Elemento --> Não é um bloco, é um elemento solto na tela
+@mixin text($fontSize: 16px) {
+  font-size: $fontSize;
+  line-height: $fontSize + 10px;
+  color: variaveis.$corTextoPrincipal;
+}
+
+//Elemento --> Não é um bloco, é um elemento solto na tela
+@mixin title($fontSize: 40px) {
+  @include text($fontSize);
+  color: variaveis.$corTextoSecundario;
+}
+
+//Modificador - Elemento--modificador --> Não há bloco, pois são elementos soltos na tela
+.text--big {
+  @include text(18px);
+}
+
+//Bloco
+.text {
+  @include text;
+}
+
+//Modificador - Elemento--modificador --> Não há bloco, pois são elementos soltos na tela
+.text--small {
+  @include text(12px);
+}
+
+.link-text {
+  @include text(18px);
+  color: variaveis.$corTextoSecundario;
+  text-decoration: underline;
+}
+
+.title--big {
+  @include title(44px);
+}
+
+.title {
+  @include title;
+}
+
+.title--small {
+  @include title(28px);
 }
